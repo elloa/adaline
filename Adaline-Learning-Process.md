@@ -13,7 +13,8 @@ Adaline stands for **ADA**ptive **LI**near **E**lement. It was proposed in the c
 - Elloá B. Guedes (ebgcosta@uea.edu.br)
 - [github.com/elloa](github.com/elloa)
 
-
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 ```python
 ## Required libraries
@@ -94,36 +95,36 @@ w0 = np.squeeze(w0)
 
 ### Cost Function (MSE)
 
-\begin{equation}
+$$
 J = \frac{1}{n}\sum_{i= 1}^{n} (y_d^i - (\mathbf{w}\mathbf{x}^i))^2
-\end{equation}
+$$
 
 ### Recall that we have to update weights in order to minimize the cost function
 
-\begin{eqnarray}
+$$
 \frac{\partial J}{\partial w_i} &=& \frac{\partial J}{\partial y}\frac{\partial y}{\partial w_i}\\
 &=& - x_i (d - (w_0 + w_1x_2 +\ ldots + w_n x_n))\\
 &=& -x_i\cdot e
-\end{eqnarray}
+$$
 
 We have to walk in the opposite direction of the increase in the error gradient.
 
-\begin{equation}
+$$
 \Delta \mathbf{w}_i \propto - \nabla J
-\end{equation}
+$$
 
 So that:
 
-\begin{equation}
+$$
 \Delta \mathbf{w}_i \propto e x_i
-\end{equation}
+$$
 
 ### Updating the weights vector
 
-\begin{eqnarray}
+$$
 W(n + 1) &=& W(n) + \Delta W(n)\\
          &=& W(n) + \eta \cdot e \cdot x_i
-\end{eqnarray} where $\eta$ is the learning rate that gives us the size of the steps we walk in the error surface towards minimizing the MSE
+$$ where $\eta$ is the learning rate that gives us the size of the steps we walk in the error surface towards minimizing the MSE
 
 
 
@@ -175,7 +176,7 @@ plt.show();
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_11_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_12_0.png)
 
 
 
@@ -209,7 +210,7 @@ plt.show();
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_14_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_15_0.png)
 
 
 
@@ -230,7 +231,7 @@ plt.show();
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_15_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_16_0.png)
 
 
 
@@ -248,7 +249,7 @@ plt.show();
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_16_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_17_0.png)
 
 
 
@@ -268,7 +269,7 @@ plt.show();
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_17_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_18_0.png)
 
 
 
@@ -293,5 +294,5 @@ plt.show()
 ```
 
 
-![png](Adaline-Learning-Process_files/Adaline-Learning-Process_18_0.png)
+![png](Adaline-Learning-Process_files/Adaline-Learning-Process_19_0.png)
 
