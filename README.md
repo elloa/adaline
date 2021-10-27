@@ -3,6 +3,14 @@
 
 - Elloá B. Guedes (ebgcosta@uea.edu.br)
 
+### Create conda env to reproduce examples
+
+- My condaenv was named _ieee_. Change it as you prefer.
+
+```
+conda env create --file environment.yml
+```
+
 ### Detailed Adaline Learning Process
 
 Using Delta Rule for updating weights on a very simple scenario where error surface is parabolic and can be visualized in three dimensions.
