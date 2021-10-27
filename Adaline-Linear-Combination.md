@@ -24,18 +24,18 @@ import random
 
 ## Functions
 
-- $x \in [0, 2 \pi]$
-- $f_1(x) = \sin(x)$
-- $f_2(x) = \cos(x)$
-- $f_3(x) = x$
-- $F(x) = - \pi + 0.565f_1(x) + 2.657f_2(x) + 0.674f_3(x)$
+- $`x \in [0, 2 \pi]`$
+- $`f_1(x) = \sin(x)`$
+- $`f_2(x) = \cos(x)`$
+- $`f_3(x) = x`$
+- $`F(x) = - \pi + 0.565f_1(x) + 2.657f_2(x) + 0.674f_3(x)`$
 
 Thus, we have:
 
-- $a_0 = - \pi \approx 3.1415$
-- $a_1 = 0.565$
-- $a_2 = 2.657$
-- $a_3 = 0.674$
+- $`a_0 = - \pi \approx 3.1415`$
+- $`a_1 = 0.565`$
+- $`a_2 = 2.657`$
+- $`a_3 = 0.674`$
 
 
 ```python
@@ -94,13 +94,13 @@ ax2.set_title(r"$F(x) = - \pi + 0.565f_1(x) + 2.657f_2(x) + 0.674f_3(x)$");
 ## ADALINE to approximate F(x)
 
 - Strategy: use 30 sample points to train Adaline
-- Weight vector to approximate $(a_0, a_1, a_2, a_3)$, i.e.: $$(w_0 = \theta, w_1, w_2, w_3) \approx  (a_0, a_1, a_2, a_3)$$
-- Initial weights: $w_i \sim U(-0.5;0.5)$
+- Weight vector to approximate $`(a_0, a_1, a_2, a_3)`$, i.e.: $$`(w_0 = \theta, w_1, w_2, w_3) \approx  (a_0, a_1, a_2, a_3)`$$
+- Initial weights: $`w_i \sim U(-0.5;0.5)`$
 
 ## Train Data
 
 - For the 30 sample points obtain the following vectors:
-$$(a_0 = 1, a_1 = \sin(x), a_2 = \cos(x), a_3 = x)$$
+$$`(a_0 = 1, a_1 = \sin(x), a_2 = \cos(x), a_3 = x)`$$
 - Target: $F(x)$
 
 
@@ -121,7 +121,7 @@ def mse(targets,inputs, weights):
     temp = []
     for i in range(len(inputs)):
         temp.append(output(weights,inputs[i]))
-        
+
     s = 0
     for (x,y) in zip(targets,temp):
         s += (x-y)**2
@@ -165,23 +165,23 @@ values = []
 errors = []
 while (mse(targets,inputs,w0) > 10**(-8)):
     iteration_error = error(targets[pos],output(w0,inputs[pos]))
-    
+
     ## Creating a list of weights and MSE at the current iteration    
     #values.append(np.concatenate((w0, np.array(mse(targets,inputs,w0), dtype=np.float32))))
-    
+
     #errors.append(mse(targets,inputs,w0)[0])
     w1 = w0 + LEARNING_RATE*iteration_error*inputs[pos]    
     w1 = w1.squeeze()
-    
+
     ## iteration over the 30 input samples
     pos = pos + 1
     if pos == SAMPLES:
         pos = 0
-        
-        
+
+
     w0 = w1
-    it = it + 1 
-        
+    it = it + 1
+
 print("====== TRAINING RESULT ======")
 print("Iterations: ",it)
 print("Epochs: ",int(it/30))
