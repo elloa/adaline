@@ -51,7 +51,7 @@ def mse(targets,inputs, weights):
     temp = []
     for x in inputs:
         temp.append(output(weights,x))
-
+    
     s = 0
     for (x,y) in zip(targets,temp):
         s += (x-y)**2
@@ -63,10 +63,10 @@ def mse(targets,inputs, weights):
 This regression problem was chosen because it is possible to visualize in three dimensions
 
 - Samples: 2
-- Training Data: $`\Gamma = \{(x_1 = 0.2; y_d^1 = 0.9), (x_2 = -1.5; y_d^2 = 0.3)\}`$
+- Training Data: $\Gamma = \{(x_1 = 0.2; y_d^1 = 0.9), (x_2 = -1.5; y_d^2 = 0.3)\}$
 - Input shape: (1,1)
 - Output shape: (1,1)
-- Learning rate: $`\eta = 0.1`$
+- Learning rate: $\eta = 0.1$
 
 
 ```python
@@ -94,37 +94,36 @@ w0 = np.squeeze(w0)
 
 ### Cost Function (MSE)
 
-```math
+\begin{equation}
 J = \frac{1}{n}\sum_{i= 1}^{n} (y_d^i - (\mathbf{w}\mathbf{x}^i))^2
-```
+\end{equation}
 
 ### Recall that we have to update weights in order to minimize the cost function
 
-```math
+\begin{eqnarray}
 \frac{\partial J}{\partial w_i} &=& \frac{\partial J}{\partial y}\frac{\partial y}{\partial w_i}\\
 &=& - x_i (d - (w_0 + w_1x_2 +\ ldots + w_n x_n))\\
 &=& -x_i\cdot e
-```
+\end{eqnarray}
 
 We have to walk in the opposite direction of the increase in the error gradient.
 
-```math
+\begin{equation}
 \Delta \mathbf{w}_i \propto - \nabla J
-```
+\end{equation}
 
 So that:
 
-```math
+\begin{equation}
 \Delta \mathbf{w}_i \propto e x_i
-```
+\end{equation}
 
 ### Updating the weights vector
 
-```math
+\begin{eqnarray}
 W(n + 1) &=& W(n) + \Delta W(n)\\
          &=& W(n) + \eta \cdot e \cdot x_i
-```
-where $`\eta`$ is the learning rate that gives us the size of the steps we walk in the error surface towards minimizing the MSE
+\end{eqnarray} where $\eta$ is the learning rate that gives us the size of the steps we walk in the error surface towards minimizing the MSE
 
 
 
@@ -136,17 +135,17 @@ values = []
 errors = []
 while (mse(targets,inputs,w0) > 10**(-8)):
     iteration_error = error(targets[pos],output(w0,inputs[pos]))
-
+    
     ## Creating a list of weights and MSE at the current iteration    
     values.append(np.concatenate((w0, np.array(mse(targets,inputs,w0), dtype=np.float32))))
-
+    
     errors.append(mse(targets,inputs,w0)[0])
     w1 = w0 + LEARNING_RATE*iteration_error*inputs[pos]    
     w1 = w1.squeeze()
     pos = (pos + 1) % 2
     w0 = w1
-    it = it +1
-
+    it = it +1 
+        
 print("====== TRAINING RESULT ======")
 print("First  sample: Ground truth", targets[0],"Predicted: ",output(inputs,w0)[0])
 print("Second sample: Ground truth", targets[1],"Predicted: ",output(inputs,w0)[1])
@@ -288,10 +287,11 @@ yy = np.column_stack((values[:,1], values[:,1]))
 ax.contour(X, Y, Z, 10, cmap="viridis_r", linestyles="solid")
 #ax.plot([0.82929678],[0.35283823], "ro")
 ax.plot(xx,yy,"ro")
-ax.annotate(r'($\theta^f = $ %s, $w_0^f = $%s)' % (0.82929678,0.35283823), xy=(0.82929678,0.35283823), textcoords='data')
-ax.annotate(r'($\theta^i = $ %s, $w_0^i = $%s)' % (1.5, -1.5), xy=(1.5, -1.5), textcoords='data')
+ax.annotate(r'($\theta^f = $ %s, $w_0^f = $%s)' % (0.82929678,0.35283823), xy=(0.82929678,0.35283823), textcoords='data') 
+ax.annotate(r'($\theta^i = $ %s, $w_0^i = $%s)' % (1.5, -1.5), xy=(1.5, -1.5), textcoords='data') 
 plt.show()
 ```
 
 
 ![png](Adaline-Learning-Process_files/Adaline-Learning-Process_18_0.png)
+
